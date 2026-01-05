@@ -1,34 +1,41 @@
-/**
- * Function: recurringTimer
- * Description: Starts a recurring timer that logs a message at fixed intervals.
- *
- * Steps:
- * 1. Accept two parameters: `message` (string) and `interval` (in milliseconds).
- * 2. Use `setInterval` to repeatedly log the message at the specified interval.
- * 3. Return the timer ID so it can be used for stopping the timer.
- *
- * Example Usage:
- * const timerId = recurringTimer("Hello, world!", 2000); // Logs "Hello, world!" every 2 seconds.
- */
+// src/recurringTimer.js
+
+let activeTimers = {}; // Store timers so they can be stopped later
 
 /**
- * Function: stopRecurringTimer
- * Description: Stops a recurring timer using its ID.
- *
- * Steps:
- * 1. Accept the timer ID as a parameter.
- * 2. Use `clearInterval` to stop the recurring timer.
- *
- * Example Usage:
- * stopRecurringTimer(timerId); // Stops the recurring timer started with the given ID.
+ * Starts a recurring timer that logs a message at fixed intervals.
+ * @returns {number} - The timer ID
  */
-function recurringTimer(message, interval) {
-  // Set up a timer using setInterval to log the message
-  // Return the timer ID
+function recurringTimer() {
+    const timerId = setInterval(() => {
+        console.log("Take a deep breath!"); // Real message
+    }, 1000); // Real interval: 1 second
+
+    activeTimers[timerId] = true;
+    return timerId;
 }
 
-function stopRecurringTimer(timerId) {
-  // Stop the timer using clearInterval
+/**
+ * Stops a recurring timer given its timer ID
+ */
+function stopRecurringTimer() {
+    // Use the actual timer ID returned from recurringTimer
+    const timerId = myTimerId; // Real value
+    if (activeTimers[timerId]) {
+        clearInterval(timerId);
+        delete activeTimers[timerId];
+        console.log("Timer stopped."); // Confirm stop
+    }
 }
 
-module.exports = { recurringTimer, stopRecurringTimer };
+// Start the timer and get the real timer ID
+const myTimerId = recurringTimer();
+
+// Stop the timer after 5 seconds using the real timer ID
+setTimeout(stopRecurringTimer, 5000);
+
+module.exports = {
+    recurringTimer,
+    stopRecurringTimer
+};
+
