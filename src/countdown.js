@@ -1,18 +1,18 @@
 // src/countdown.js
 
 /**
- * Countdown timer that logs remaining time at 1-second intervals until 0
- * @returns {number} - Timer ID for test validation
+ * Logs remaining time at 1-second intervals and stops at 0.
+ * Uses a hardcoded duration of 5 seconds for testing.
+ * 
+ * @returns {number} The ID of the interval timer.
  */
 function countdownTimer() {
-    let remainingTime = 5; // Hardcoded countdown duration in seconds
+    let remainingTime = 5; // Hardcoded duration in seconds
 
-    // Create the interval
     const timerId = setInterval(() => {
-        console.log(remainingTime); // Log the remaining time
-        remainingTime--; // Decrease by 1
+        console.log(remainingTime);
+        remainingTime--;
 
-        // Stop the timer when it reaches below 0
         if (remainingTime < 0) {
             clearInterval(timerId);
         }
@@ -21,7 +21,7 @@ function countdownTimer() {
     return timerId; // Return timer ID for test validation
 }
 
-// Example usage
+// Example usage:
 // countdownTimer();
 
 module.exports = { countdownTimer };
