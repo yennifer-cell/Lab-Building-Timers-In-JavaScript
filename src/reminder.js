@@ -1,17 +1,24 @@
 // src/reminder.js
 
-function delayedReminder(message, delay) {
-    // message: string to log
-    // delay: time in milliseconds to wait before logging
+/**
+ * Logs a reminder message after a delay.
+ * Uses hardcoded values: message = "Time to take a break!", delay = 3000ms.
+ * 
+ * @returns {Promise<void>} Resolves when the message has been logged.
+ */
+function delayedReminder() {
+    const message = "Time to take a break!";
+    const delay = 3000; // 3 seconds
 
     return new Promise((resolve) => {
         setTimeout(() => {
-            console.log(message); // Log the reminder
-            resolve(); // Confirm that the reminder was logged
+            console.log(message);
+            resolve();
         }, delay);
     });
 }
 
-module.exports = {
-    delayedReminder
-};
+// Example usage:
+// delayedReminder().then(() => console.log("Reminder done"));
+
+module.exports = { delayedReminder };
